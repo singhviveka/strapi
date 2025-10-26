@@ -23,3 +23,9 @@
 - Role -> permission mapping uses a simple role flag. Better integration with users-permissions actions for granular RBAC is recommended.
 - For very high throughput, move logging to background queue or separate store.
 - Use a robust diff algorithm for nested objects if needed.
+
+## If using mongodb do following
+- db.audit_logs.createIndex({ contentType: 1, recordId: 1 });
+- db.audit_logs.createIndex({ 'user': 1 });
+- db.audit_logs.createIndex({ timestamp: -1 });
+
