@@ -1,0 +1,24 @@
+{
+    "kind": "collectionType",
+    "collectionName": "audit_logs",
+    "info": {
+      "singularName": "audit-log",
+      "pluralName": "audit-logs",
+      "displayName": "Audit Log",
+      "description": "Audit logs for content changes"
+    },
+    "options": {
+      "draftAndPublish": false,
+      "timestamps": true
+    },
+    "attributes": {
+      "contentType": { "type": "string", "required": true },
+      "recordId": { "type": "string", "required": false, "index": true },
+      "action": { "type": "enumeration", "enum": ["create", "update", "delete"], "required": true },
+      "user": { "type": "relation", "relation": "oneToOne", "target": "plugin::users-permissions.user", "private": true },
+      "changed": { "type": "json" },
+      "meta": { "type": "json" },
+      "timestamp": { "type": "datetime", "default": { "$now": true } }
+    }
+  }
+  
